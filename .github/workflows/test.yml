@@ -1,0 +1,27 @@
+name: Dispatch remote Selenium workflow
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  trigger-remote-workflow:
+    name: Trigger workflow in other repo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger remote workflow via workflow-dispatch
+        uses: peter-evans/workflow-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_TRIGGER_PAT }}
+          repository: sharmarishiksh01/WebAppAutomationSG
+          workflow: .github/workflows/run-selenium-tests.yml
+          ref: main
+
+      - name: Confirm dispatch
+        run: echo "Dispatch request sent to sharmarishiksh01/WebAppAutomationSG/.github/workflows/run-selenium-tests.yml on ref 'main'"
+
+# Notes:
+# - Create a Personal Access Token (PAT) with appropriate scopes and add it to this repo's
+#   Secrets as `REPO_TRIGGER_PAT`.
+#   Recommended scopes: `repo` (or `public_repo` for a public repo) and `workflow` if present.
+# - The target workflow must include `workflow_dispatch:` in its `on:` block to be triggerable.
