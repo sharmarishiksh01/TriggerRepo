@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger remote workflow via workflow-dispatch
-        uses: sharmarishiksh01/WebAppAutomationSG
-        with:
-          token: ${{ secrets.REPO_TRIGGER_PAT }}
-          repository: sharmarishiksh01/WebAppAutomationSG
-          workflow: .github/workflows/run-selenium-tests.yml
-          ref: main
+        env:
+          GH_TOKEN: ${{ secrets.REPO_TRIGGER_PAT }}
+        run: |
+          gh workflow run run-selenium-tests.yml \
+            --repo sharmarishiksh01/WebAppAutomationSG \
+            --ref main
 
       - name: Confirm dispatch
         run: echo "Dispatch request sent to sharmarishiksh01/WebAppAutomationSG/.github/workflows/run-selenium-tests.yml on ref 'main'"
