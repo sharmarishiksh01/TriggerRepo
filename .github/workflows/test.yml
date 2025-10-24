@@ -25,6 +25,8 @@ jobs:
 #   Secrets as `REPO_TRIGGER_PAT`.
 #   Recommended scopes: `repo` (or `public_repo` for a public repo) and `workflow` if present.
 # - The target workflow must include `workflow_dispatch:` in its `on:` block to be triggerable.
+# - This workflow uses GitHub CLI (gh) to trigger the remote workflow_dispatch event.
+# - The GH_TOKEN environment variable authenticates the gh CLI with the PAT.
 
 
 
