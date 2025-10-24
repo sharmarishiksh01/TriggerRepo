@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger remote workflow via workflow-dispatch
-        uses: peter-evans/workflow-dispatch@v1
+        uses: sharmarishiksh01/WebAppAutomationSG
         with:
           token: ${{ secrets.REPO_TRIGGER_PAT }}
           repository: sharmarishiksh01/WebAppAutomationSG
@@ -25,4 +25,5 @@ jobs:
 #   Secrets as `REPO_TRIGGER_PAT`.
 #   Recommended scopes: `repo` (or `public_repo` for a public repo) and `workflow` if present.
 # - The target workflow must include `workflow_dispatch:` in its `on:` block to be triggerable.
+
 
